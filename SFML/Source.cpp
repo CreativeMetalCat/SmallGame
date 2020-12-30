@@ -8,17 +8,20 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(200, 200),"It works!");
-	Test::TestShape* shape = new Test::TestShape(200, sf::Color::Red);
+	Test::TestSprite* sprite = new Test::TestSprite("test", "Assets/PlaceHolderCharacter.png", sf::Vector2f(0, 0));
 	while (window.isOpen())
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
+			{
+				sprite->Destroy();
 				window.close();
+			}
 		}
 		window.clear();
-		shape->Draw(window);
+		sprite->Draw(window);
 		window.display();
 	}
 

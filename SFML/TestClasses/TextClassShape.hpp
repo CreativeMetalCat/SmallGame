@@ -1,30 +1,27 @@
+#pragma once
+#include <Base/Object.h>
 #include <SFML/Graphics.hpp>
+
 
 namespace Test 
 {
-	class TestShape
+	class TestSprite :public CObject
 	{
+	protected:
+		sf::Texture Texture;
 	public:
-		sf::CircleShape shape;
+		sf::Vector2<float> Location;
 
-		float CircleRaius = 200;
+		sf::Sprite Sprite;
 
-		sf::Color color;
+		TestSprite(sf::String Name,sf::Sprite sprite, sf::Vector2f Location);
 
-		TestShape(float _CircleRaius, sf::Color _color) :CircleRaius(_CircleRaius), color(_color)
-		{
-			shape.setRadius(CircleRaius);
-			shape.setFillColor(_color);
-		}
+		TestSprite(sf::String Name,sf::Texture texture, sf::Vector2f Location);
 
-		virtual void Draw(sf::RenderWindow &window)
-		{
-			window.draw(shape);
-		}
+		TestSprite(sf::String Name, sf::String texturePath, sf::Vector2f Location);
 
-		virtual void Destroy()
-		{
-			//clean memory here
-		}
+		virtual void Draw(sf::RenderWindow& window);
+
+		virtual void Destroy()override;
 	};
 }
